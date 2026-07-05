@@ -57,39 +57,25 @@ flowchart TB
 
 ## Installation
 
-### 1. Install the plugin
+Add productforge to the `plugin` array in your `opencode.json` (global or project-level):
 
-**Via git (recommended):**
+**Via npm (recommended):**
 ```json
 {
-  "plugin": ["productforge@git+https://github.com/isaac/opencode-productforge.git"]
+  "plugin": ["opencode-productforge"]
 }
 ```
 
-**Via local clone (development):**
+**Via local path (development):**
 ```json
 {
   "plugin": ["<path-to-cloned-repo>"]
 }
 ```
 
-### 2. Install the forge agent + command (one-time)
+Restart OpenCode. The plugin auto-installs via Bun, registers all skills, and deploys the `/forge` command and `@forge` subagent.
 
-```powershell
-# Windows
-copy install\forge-agent.md "$env:USERPROFILE\.config\opencode\agents\forge.md"
-copy install\forge-command.md "$env:USERPROFILE\.config\opencode\commands\forge.md"
-```
-
-```bash
-# macOS / Linux
-cp install/forge-agent.md ~/.config/opencode/agents/forge.md
-cp install/forge-command.md ~/.config/opencode/commands/forge.md
-```
-
-Restart OpenCode.
-
-### 3. Use it
+### Use it
 
 ```
 /forge build a second brain

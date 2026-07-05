@@ -4,22 +4,32 @@
   "description": "Product Forge — AI-powered project initialization, architecture governance, and retrospective automation for opencode",
   "type": "module",
   "main": ".opencode/plugins/productforge.js",
+  "files": [
+    ".opencode/INSTALL.md",
+    ".opencode/plugins/productforge.js",
+    "install",
+    "skills",
+    "LICENSE",
+    "README.md"
+  ],
   "keywords": [
     "opencode",
     "plugin",
+    "forge",
     "project-initialization",
     "architecture",
     "adr",
     "retrospective",
-    "lifecycle"
+    "lifecycle",
+    "aipdlc"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isaac/opencode-productforge.git"
+    "url": "git+https://github.com/neoaisac/opencode-productforge.git"
   },
   "bugs": {
-    "url": "https://github.com/isaac/opencode-productforge/issues"
+    "url": "https://github.com/neoaisac/opencode-productforge/issues"
   },
-  "homepage": "https://github.com/isaac/opencode-productforge#readme"
+  "homepage": "https://github.com/neoaisac/opencode-productforge#readme"
 }

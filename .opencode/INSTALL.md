@@ -6,43 +6,23 @@
 
 ## Installation
 
-### Plugin
-
 Add productforge to the `plugin` array in your `opencode.json` (global or project-level):
 
-**Via git (recommended):**
+**Via npm (recommended):**
 ```json
 {
-  "plugin": ["productforge@git+https://github.com/isaac/opencode-productforge.git"]
+  "plugin": ["opencode-productforge"]
 }
 ```
 
-**Via local clone (development):**
+**Via local path (development):**
 ```json
 {
   "plugin": ["<path-to-cloned-repo>"]
 }
 ```
 
-Restart OpenCode. The plugin installs through OpenCode's plugin manager and registers all skills.
-
-### Forge agent + command (one-time)
-
-```powershell
-# Windows
-copy install\forge-agent.md "$env:USERPROFILE\.config\opencode\agents\forge.md"
-copy install\forge-command.md "$env:USERPROFILE\.config\opencode\commands\forge.md"
-```
-
-```bash
-# macOS / Linux
-cp install/forge-agent.md ~/.config/opencode/agents/forge.md
-cp install/forge-command.md ~/.config/opencode/commands/forge.md
-```
-
-This gives you:
-- `/forge <premise>` — slash command to start the lifecycle
-- `@forge` — subagent that can also be dispatched by other agents
+Restart OpenCode. The plugin auto-installs via Bun, registers all skills, and deploys the `/forge` command and `@forge` subagent automatically.
 
 ## Usage
 
@@ -56,6 +36,7 @@ Or invoke skills manually via the `skill` tool if you prefer granular control:
 
 - `forge` — Orchestrates the full lifecycle automatically
 - `project-initialization` — Scaffold docs structure
+- `ideate` — Refine rough ideas into clear designs
 - `user-researcher` — Market + user sentiment research
 - `architect` — Decision ADRs + continuity + deployability
 - `retrospective` — Learn and automate on commit/compaction
