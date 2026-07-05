@@ -35,7 +35,7 @@ flowchart LR
     end
 
     subgraph B[Build]
-        Exec["subagent-driven-development<br>or executing-plans"]
+        SDD["subagent-driven-development<br>Subagent per task"]
     end
 
     subgraph L[Learn]
@@ -88,7 +88,7 @@ Follow these phases in order. Create a todo for each phase and mark complete as 
 
 ### Phase 5: Build
 
-- [ ] **Invoke `subagent-driven-development`** (recommended) or `executing-plans` to execute the plan. Follow the chosen skill's process exactly.
+- [ ] **Invoke `subagent-driven-development`** to execute the plan. Follow its process exactly.
 
 ### Phase 6: Learn
 
