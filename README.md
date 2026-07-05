@@ -7,7 +7,7 @@ Initialize, govern, and learn from every project with a repeatable lifecycle.
 ## Skills
 
 | Skill | Purpose |
-|---|---|---|
+|---|---|
 | **forge** | **START HERE.** Orchestrates the full lifecycle: discover → design → plan → gate → build → learn |
 | **project-initialization** | Scaffold a new project with docs structure, ADR workflow, and lifecycle governance |
 | **ideate** | Refine rough ideas into clear designs with 3 autonomy levels: Drive (full auto), Guided (ask on conflict), Collaborate (co-create) |
@@ -19,7 +19,11 @@ Initialize, govern, and learn from every project with a repeatable lifecycle.
 
 ```mermaid
 flowchart LR
-    P[Premise] --> D[Discover]
+    CMD["/forge &lt;premise&gt;"] --> AGT["@forge subagent"]
+    AGT --> SKL["forge SKILL.md"]
+
+    SKL --> P[Premise]
+    P --> D[Discover]
     D --> D2[Design]
     D2 --> P2[Plan]
     P2 --> G[Gate<br>User Approves]
