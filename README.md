@@ -78,7 +78,34 @@ Restart OpenCode.
 /forge build a second brain
 ```
 
-The forge agent runs the full lifecycle automatically. No other skills to remember.
+That's it. Here's what happens:
+
+```
+/forge build a second brain
+  │
+  ▼
+forge.md (command) ── passes premise to ──► forge.md (subagent)
+                                               │
+                                               ▼
+                                          forge SKILL.md
+                                               │
+                                               ▼
+         ┌──────────────────────────────────────────────────┐
+         │  AIPDLC Lifecycle                                │
+         │                                                  │
+         │  Phase 1: Discover                               │
+         │    ├─ project-initialization (scaffold docs)     │
+         │    ├─ ideate (refine design, choose autonomy)    │
+         │    └─ user-researcher (market + sentiment)       │
+         │  Phase 2: Design   ── architect (ADRs + PRD)     │
+         │  Phase 3: Plan     ── writing-plans (tasks)      │
+         │  Phase 4: Gate     ── you approve or iterate     │
+         │  Phase 5: Build    ── subagents execute          │
+         │  Phase 6: Learn    ── retrospective (automate)   │
+         └──────────────────────────────────────────────────┘
+```
+
+No other skills to remember — `/forge` is the sole entry point.
 
 ### 4. Choose your ideation style
 
