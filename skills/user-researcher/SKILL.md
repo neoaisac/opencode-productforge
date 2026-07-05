@@ -4,7 +4,7 @@ Given a feature or product area, researches industry-leading systems and synthes
 
 ## When to Use
 
-Invoke after brainstorming identifies a feature area but before ANY design or implementation work. The output feeds directly into the Architect (ADRs) and Writing-Plans (implementation tasks).
+Invoke after ideate identifies a feature area but before ANY design or implementation work. The output feeds directly into the Architect (ADRs) and Writing-Plans (implementation tasks).
 
 ## Process
 
@@ -119,4 +119,4 @@ Present findings as structured Markdown suitable for:
 - [ ] Identify nice-to-have features
 - [ ] Identify no-go patterns
 - [ ] Deliver structured findings
-- [ ] Hand off to Architect + Brainstorming for next steps
+- [ ] Hand off to Architect + ideate for next steps

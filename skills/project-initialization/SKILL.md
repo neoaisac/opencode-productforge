@@ -1,6 +1,6 @@
 # Skill: Project Initialization
 
-The entry point for any new project. Scaffolds documentation structure, sets up lifecycle governance, and hands off to brainstorming.
+The entry point for any new project. Scaffolds documentation structure, sets up lifecycle governance, and hands off to ideate.
 
 ## When to Use
 
@@ -26,7 +26,7 @@ Explain the available lifecycle skills and the workflow:
 
 ```
 project-initialization (you are here)
-  → brainstorming (design the first feature)
+  → ideate (refine the idea)
     → architect (write ADRs for every decision)
       → writing-plans (break into tasks)
         → implementation
@@ -52,12 +52,12 @@ Ask what the project is about. Use the answer to create the first ADR at `docs/a
 
 **Decision**: Build [brief direction]. Will follow the AIPDLC lifecycle: brainstorm → design → ADRs → implement → retro.
 
-**Consequences**: The docs scaffold is in place. First brainstorming session will refine scope.
+**Consequences**: The docs scaffold is in place. First ideate session will refine scope.
 ```
 
 ### Phase 4 — Handoff
 
-Invoke the `brainstorming` skill to continue into the design phase.
+Invoke the `ideate` skill to continue into the design phase.
 
 ## Checklist
 
@@ -68,4 +68,4 @@ Invoke the `brainstorming` skill to continue into the design phase.
 - [ ] Explain the workflow to the user
 - [ ] Ask for project description
 - [ ] Write first ADR capturing initial direction
-- [ ] Hand off to brainstorming skill
+- [ ] Hand off to ideate skill
