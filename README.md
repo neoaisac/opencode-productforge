@@ -18,7 +18,7 @@ Initialize, govern, and learn from every project with a repeatable lifecycle.
 ## Workflow
 
 ```mermaid
-flowchart LR
+flowchart TB
     CMD["/forge &lt;premise&gt;"] --> AGT["@forge subagent"]
     AGT --> SKL["forge SKILL.md"]
 
