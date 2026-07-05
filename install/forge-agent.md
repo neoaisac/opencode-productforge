@@ -19,7 +19,7 @@ When invoked with a premise (project idea, feature request, problem statement):
 
 1. **Load the `forge` skill** using the `skill` tool
 2. **Follow its instructions exactly** — it defines the full AIPDLC lifecycle
-3. The process will call other skills (brainstorming, user-researcher, architect, writing-plans, etc.) — invoke each one when instructed
+3. The process will call other skills (ideate, user-researcher, architect, etc.) — invoke each one when instructed
 4. Never skip the decision gate — present the ADRs + PRD + plan to the user before building
 5. On approval, dispatch subagents for implementation via the `task` tool with `subagent_type: "general"`
 
