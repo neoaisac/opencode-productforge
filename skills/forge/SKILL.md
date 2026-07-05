@@ -60,7 +60,7 @@ Follow these phases in order. Create a todo for each phase and mark complete as 
 ### Phase 1: Discover
 
 - [ ] **If no docs structure exists**, invoke `project-initialization` to scaffold it
-- [ ] **Invoke `ideate`** to refine the premise into a clear design. Follow its full process: choose autonomy level → orient → discover → design → document → hand off. Ideate writes to `docs/features/<topic>-ideation.md`.
+- [ ] **Invoke `ideate`** to refine the premise into a clear design. Follow its full process: choose autonomy level → orient → discover → design → document → hand off.
 - [ ] **Invoke `user-researcher`** to research the feature area. Provide the approved design direction as context. Wait for the 4-level categorization (disruptive, must-haves, nice-to-haves, no-gos).
 
 ### Phase 2: Design

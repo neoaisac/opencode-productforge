@@ -81,7 +81,7 @@ Wait for the response before proceeding.
 
 ### Phase 4: Document
 
-- [ ] **Write design doc** — Save to docs/features/<topic>-ideation.md with:
+- [ ] **Write design doc** — Save to docs/features/<topic>-design.md with:
   - Premise
   - Design decisions (with rationale)
   - Architecture approach / Mermaid diagram
@@ -89,14 +89,12 @@ Wait for the response before proceeding.
   - Data flow
   - Open questions (if any)
 
-  Format so the architect skill can consume it as input when writing the PRD.
-
 - [ ] **Self-review** — Scan for placeholders, contradictions, ambiguity. Fix inline.
 - [ ] **User review** — Present the spec: "Ideation written to <path>. Please review." Wait for approval or changes.
 
 ### Phase 5: Return
 
-- [ ] **Hand off** — Confirm the completed ideation is ready. Return control to the forge orchestrator, which passes the ideation doc to the architect skill for PRD creation.
+- [ ] **Hand off** — Confirm the completed design is ready. Return control to the forge orchestrator, which passes the design output to the architect skill for PRD creation.
 
 ## Design Principles
 
@@ -108,6 +106,6 @@ Wait for the response before proceeding.
 
 ## Relationship to Forge
 
-Ideate replaces the rainstorming skill in the AIPDLC lifecycle. The forge orchestrator invokes this skill during the Discover phase. The output at docs/features/<topic>-ideation.md is consumed by the architect skill when writing the PRD.
+Ideate replaces the rainstorming skill in the AIPDLC lifecycle. The forge orchestrator invokes this skill during the Discover phase. The output at docs/features/<topic>-design.md is consumed by the architect skill when writing the PRD.
 
 Ideate runs in parallel with user-researcher (market analysis). They cover different angles — ideate on technical design, user-researcher on market fit.
