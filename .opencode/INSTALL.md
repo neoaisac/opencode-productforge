@@ -1,4 +1,4 @@
-# Installing ProjectForge for OpenCode
+# Installing productforge for OpenCode
 
 ## Prerequisites
 
@@ -8,12 +8,12 @@
 
 ### Plugin
 
-Add ProjectForge to the `plugin` array in your `opencode.json` (global or project-level):
+Add productforge to the `plugin` array in your `opencode.json` (global or project-level):
 
 **Via git (recommended):**
 ```json
 {
-  "plugin": ["projectforge@git+https://github.com/isaac/opencode-projectforge.git"]
+  "plugin": ["productforge@git+https://github.com/isaac/opencode-productforge.git"]
 }
 ```
 

@@ -1,9 +1,9 @@
 {
-  "name": "opencode-projectforge",
+  "name": "opencode-productforge",
   "version": "1.0.0",
-  "description": "Project Forge — AI-powered project initialization, architecture governance, and retrospective automation for opencode",
+  "description": "Product Forge — AI-powered project initialization, architecture governance, and retrospective automation for opencode",
   "type": "module",
-  "main": ".opencode/plugins/projectforge.js",
+  "main": ".opencode/plugins/productforge.js",
   "keywords": [
     "opencode",
     "plugin",
@@ -16,10 +16,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isaac/opencode-projectforge.git"
+    "url": "git+https://github.com/isaac/opencode-productforge.git"
   },
   "bugs": {
-    "url": "https://github.com/isaac/opencode-projectforge/issues"
+    "url": "https://github.com/isaac/opencode-productforge/issues"
   },
-  "homepage": "https://github.com/isaac/opencode-projectforge#readme"
+  "homepage": "https://github.com/isaac/opencode-productforge#readme"
 }
