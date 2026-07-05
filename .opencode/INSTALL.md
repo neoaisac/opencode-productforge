@@ -24,14 +24,31 @@ For a git-backed install (once published):
 
 Restart OpenCode. The plugin installs through OpenCode's plugin manager and registers all skills.
 
+## One-Click Setup
+
+Run these commands to install the forge agent and command:
+
+```powershell
+copy install\forge-agent.md "$env:USERPROFILE\.config\opencode\agents\forge.md"
+copy install\forge-command.md "$env:USERPROFILE\.config\opencode\commands\forge.md"
+```
+
+This gives you:
+- `/forge <premise>` — slash command to start the lifecycle
+- `@forge` — subagent that can also be dispatched by other agents
+
 ## Usage
 
-Invoke skills via OpenCode's native `skill` tool:
+All you need: **`/forge <your premise>`** — it handles the rest.
 
-- `project-initialization` — Start a new project with docs structure, ADR workflow, and lifecycle governance
-- `architect` — Record decisions as ADRs, enforce continuity, verify deployability
-- `retrospective` — Learn from vibe-coding loops, keep docs current, propose automation
+- `/forge build a second brain`
+- `/forge add dark mode to our app`
+- `/forge refactor the auth module`
 
-## What It Replaces
+Or invoke skills manually via the `skill` tool if you prefer granular control:
 
-ProjectForge is designed to replace the superpowers plugin. It provides a focused set of lifecycle governance skills without the broader superpowers suite.
+- `forge` — Orchestrates the full lifecycle automatically
+- `project-initialization` — Scaffold docs structure
+- `user-researcher` — Market + user sentiment research
+- `architect` — Decision ADRs + continuity + deployability
+- `retrospective` — Learn and automate on commit/compaction

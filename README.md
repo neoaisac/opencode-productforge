@@ -52,6 +52,8 @@ flowchart LR
 
 ## Installation
 
+### 1. Register the plugin
+
 Add to your `opencode.json`:
 
 ```json
@@ -59,6 +61,23 @@ Add to your `opencode.json`:
   "plugin": ["D:\\code\\opencode-projectforge"]
 }
 ```
+
+### 2. Install the forge agent + command (one-time)
+
+```powershell
+copy install\forge-agent.md "$env:USERPROFILE\.config\opencode\agents\forge.md"
+copy install\forge-command.md "$env:USERPROFILE\.config\opencode\commands\forge.md"
+```
+
+Restart OpenCode.
+
+### 3. Use it
+
+```
+/forge build a second brain
+```
+
+The forge agent runs the full lifecycle automatically. No other skills to remember.
 
 ## License
 
