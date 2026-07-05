@@ -22,7 +22,7 @@ flowchart LR
 
     subgraph D[Discover]
         Init["project-initialization<br>Docs scaffold"]
-        BS["brainstorming<br>Refine premise"]
+        ID["ideate<br>Design premise + spec"]
         UR["user-researcher<br>Market + sentiment"]
     end
 
@@ -51,7 +51,7 @@ flowchart LR
 - "Let's start a new project"
 - Any project scaffolding, design, or implementation request
 
-Do NOT manually invoke project-initialization, brainstorming, user-researcher, architect, or writing-plans — those are called by this orchestrator as needed.
+Do NOT manually invoke project-initialization, ideate, user-researcher, architect, or writing-plans — those are called by this orchestrator as needed.
 
 ## Process
 
@@ -60,12 +60,12 @@ Follow these phases in order. Create a todo for each phase and mark complete as 
 ### Phase 1: Discover
 
 - [ ] **If no docs structure exists**, invoke `project-initialization` to scaffold it
-- [ ] **Invoke `brainstorming`** to refine the premise into a clear design. Follow its full process: ask questions → research → propose approaches → present design → get approval.
+- [ ] **Invoke `ideate`** to refine the premise into a clear design. Follow its full process: choose autonomy level → orient → discover → design → document → hand off. Ideate writes to `docs/features/<topic>-ideation.md`.
 - [ ] **Invoke `user-researcher`** to research the feature area. Provide the approved design direction as context. Wait for the 4-level categorization (disruptive, must-haves, nice-to-haves, no-gos).
 
 ### Phase 2: Design
 
-- [ ] **Invoke `architect`** to write ADRs for all technology and architecture decisions made during brainstorming + research. Ensure Mermaid diagrams are added to the PRD.
+- [ ] **Invoke `architect`** to write ADRs for all technology and architecture decisions made during ideate + research. Ensure Mermaid diagrams are added to the PRD.
 - [ ] **Write the PRD** at `docs/prds/YYYY-MM-DD-feature-name.md` consolidating: scope, architecture diagram, data model, functional requirements, non-functional requirements.
 
 ### Phase 3: Plan
@@ -99,7 +99,7 @@ Then present a summary of what was built, what was learned, and what automation 
 ## Key Principles
 
 - **Single entry point**: The user only invokes `forge`. Do not make them orchestrate skills manually.
-- **Follow each skill exactly**: When you invoke brainstorming, follow its full process. Same for all others.
+- **Follow each skill exactly**: When you invoke ideate, follow its full process. Same for all others.
 - **Gate before build**: Never proceed to implementation without explicit user approval at the gate.
-- **Parallel where possible**: User-researcher can run concurrently with brainstorming's research phase if they cover different ground.
+- **Parallel where possible**: User-researcher can run concurrently with ideate's research phase if they cover different ground.
 - **Failures → retrospective**: If a skill's output is rejected at the gate, note the pattern for the retrospective.
