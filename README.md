@@ -59,10 +59,10 @@ flowchart TB
 
 Add productforge to the `plugin` array in your `opencode.json` (global or project-level):
 
-**Via npm (recommended):**
+**Via git (recommended):**
 ```json
 {
-  "plugin": ["opencode-productforge"]
+  "plugin": ["opencode-productforge@git+https://github.com/neoaisac/opencode-productforge.git"]
 }
 ```
 
@@ -70,6 +70,13 @@ Add productforge to the `plugin` array in your `opencode.json` (global or projec
 ```json
 {
   "plugin": ["<path-to-cloned-repo>"]
+}
+```
+
+**Via npm (once published):**
+```json
+{
+  "plugin": ["opencode-productforge"]
 }
 ```
 
