@@ -1,0 +1,25 @@
+{
+  "name": "opencode-projectforge",
+  "version": "1.0.0",
+  "description": "Project Forge — AI-powered project initialization, architecture governance, and retrospective automation for opencode",
+  "type": "module",
+  "main": ".opencode/plugins/projectforge.js",
+  "keywords": [
+    "opencode",
+    "plugin",
+    "project-initialization",
+    "architecture",
+    "adr",
+    "retrospective",
+    "lifecycle"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaac/opencode-projectforge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isaac/opencode-projectforge/issues"
+  },
+  "homepage": "https://github.com/isaac/opencode-projectforge#readme"
+}
