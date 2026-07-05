@@ -25,8 +25,8 @@ Before any new design work:
 2. If a new proposal conflicts with a past decision, flag it explicitly
 3. Either write a superseding ADR (with reasoning) or recommend rejection
 
-### 3. Ideation Input
-When writing a PRD, first read the corresponding ideation doc at `docs/features/<topic>-ideation.md` (created by the `ideate` skill). The design decisions, architecture approach, and open questions from ideation are the primary input to the PRD. Also read any user-researcher output available.
+### 3. Ideation Context
+When writing a PRD, use the ideation output (design decisions, architecture approach, open questions) as the primary input. Also read any user-researcher output available.
 
 ### 4. Context-Driven Architecture
 No fixed patterns or dogma. Analyze the project's real requirements:
@@ -85,7 +85,7 @@ Initiate an ADR proposing the change. The ADR supersedes the prior decision.
 ## Checklist
 
 - [ ] Read existing ADRs (continuity check)
-- [ ] Read ideation doc from `docs/features/<topic>-ideation.md` (input to PRD)
+- [ ] Review ideation context (input to PRD)
 - [ ] Evaluate architecture fit for current context
 - [ ] Write ADR for any new decision
 - [ ] Write PRD consolidating ideation + research + architecture decisions
