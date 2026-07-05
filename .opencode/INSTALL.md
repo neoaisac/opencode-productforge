@@ -6,31 +6,38 @@
 
 ## Installation
 
+### Plugin
+
 Add ProjectForge to the `plugin` array in your `opencode.json` (global or project-level):
 
-```json
-{
-  "plugin": ["D:\\code\\opencode-projectforge"]
-}
-```
-
-For a git-backed install (once published):
-
+**Via git (recommended):**
 ```json
 {
   "plugin": ["projectforge@git+https://github.com/isaac/opencode-projectforge.git"]
 }
 ```
 
+**Via local clone (development):**
+```json
+{
+  "plugin": ["<path-to-cloned-repo>"]
+}
+```
+
 Restart OpenCode. The plugin installs through OpenCode's plugin manager and registers all skills.
 
-## One-Click Setup
-
-Run these commands to install the forge agent and command:
+### Forge agent + command (one-time)
 
 ```powershell
+# Windows
 copy install\forge-agent.md "$env:USERPROFILE\.config\opencode\agents\forge.md"
 copy install\forge-command.md "$env:USERPROFILE\.config\opencode\commands\forge.md"
+```
+
+```bash
+# macOS / Linux
+cp install/forge-agent.md ~/.config/opencode/agents/forge.md
+cp install/forge-command.md ~/.config/opencode/commands/forge.md
 ```
 
 This gives you:

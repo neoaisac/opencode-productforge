@@ -57,21 +57,34 @@ flowchart LR
 
 ## Installation
 
-### 1. Register the plugin
+### 1. Install the plugin
 
-Add to your `opencode.json`:
-
+**Via git (recommended):**
 ```json
 {
-  "plugin": ["D:\\code\\opencode-projectforge"]
+  "plugin": ["projectforge@git+https://github.com/isaac/opencode-projectforge.git"]
+}
+```
+
+**Via local clone (development):**
+```json
+{
+  "plugin": ["<path-to-cloned-repo>"]
 }
 ```
 
 ### 2. Install the forge agent + command (one-time)
 
 ```powershell
+# Windows
 copy install\forge-agent.md "$env:USERPROFILE\.config\opencode\agents\forge.md"
 copy install\forge-command.md "$env:USERPROFILE\.config\opencode\commands\forge.md"
+```
+
+```bash
+# macOS / Linux
+cp install/forge-agent.md ~/.config/opencode/agents/forge.md
+cp install/forge-command.md ~/.config/opencode/commands/forge.md
 ```
 
 Restart OpenCode.
