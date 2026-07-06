@@ -5,7 +5,7 @@ description: "Refine rough ideas into clear designs through interactive, autonom
 
 # Ideate — Collaborative Idea Refinement
 
-Transform rough ideas into clear designs and specs through collaborative dialogue. The user selects their preferred autonomy level first, then the entire process adapts to match.
+Transform rough ideas into clear designs and specs. The user may choose their preferred autonomy level, but ideate defaults to **Drive mode (full autonomy)** and always produces a concrete design document.
 
 <HARD-GATE>
 Do NOT invoke any implementation skill, write any code, or take any implementation action until you have presented a design and the user has approved it.
@@ -13,99 +13,69 @@ Do NOT invoke any implementation skill, write any code, or take any implementati
 
 ## Autonomy Levels
 
-The very first thing ideate does is ask the user how they want to work together:
-
 | Level | Name | Behavior |
 |---|---|---|
 | 1 | Drive | Full autonomy. Execute end-to-end without pausing. Present final spec only. |
 | 2 | Guided | Move fast on clear decisions. Pause when there is conflict, ambiguity, or no clear winner. |
 | 3 | Collaborate | Full design partnership. Present everything, discuss together, co-create. |
 
-Default to **Level 2 (Guided)** if the user does not express a strong preference.
+**Default: Drive (Level 1).** Proceed immediately with drafting the design. If the user interjects, adapt to their preferred level.
 
 ## Process
 
-Create a todo for each item. Adapt depth/frequency of check-ins based on autonomy level.
+Create a todo for each phase and mark complete as you go.
 
-### Phase 0: Choose Autonomy Level
+### Phase 0: Start
 
-Start every ideate session by presenting the three levels:
+Announce: "I'll draft an initial design for this in Drive mode. If you'd like a different level of collaboration (Guided or Collaborate), just let me know — otherwise I'll proceed."
 
-> "Before we dive in, how would you like to work together on this?
-> 
-> **1. Drive** — I will run the full ideation end-to-end autonomously. I will ask a few upfront questions, then go design and write the spec. You will see the final output.
-> **2. Guided** (recommended) — I will move fast on clear decisions but loop you in when there is conflict, ambiguity, or no clear winner.
-> **3. Collaborate** — Full design partnership. We discuss everything together, sketch ideas, co-create step by step.
-> 
-> Which feels right for this one?"
+Reflect back your understanding of the premise: "Here is what I understand — [premise summary]." If the user corrects you, update and proceed. Do NOT wait — move to Phase 1 within the same message.
 
-Wait for the response before proceeding.
+### Phase 1: Discover
 
-### Phase 1: Orient
+- [ ] **Clarify the idea** — Ask 2-3 questions in a single batch if anything is ambiguous: purpose, constraints, success criteria, audience, integration points. Present them concisely and proceed.
+- [ ] **Research technical landscape** — Use `websearch` to find relevant patterns, existing solutions, and potential pitfalls. "I found X and Y — here is what matters for our approach."
+- [ ] **Scope check** — If the request spans multiple independent subsystems, flag decomposition and suggest tackling one first.
 
-- [ ] **Warm-up reflection** — Reflect back your understanding of the premise: "Here is what I am hearing — did I capture that?" Wait for confirmation before proceeding.
-- [ ] **Offer visual companion proactively** — "This session might benefit from having a browser tab for sketches and diagrams as we go. Want me to open one?" Offer once, accept or decline, then proceed.
-- [ ] **Explore project context** — Check files, docs, recent commits. Share relevant findings conversationally.
+### Phase 2: Design
 
-### Phase 2: Discover
+- [ ] **Propose approach** — Present your recommended architecture/approach with alternatives briefly noted.
+  - Architecture overview (Mermaid diagram)
+  - Component breakdown
+  - Data flow
+  - Key design decisions with rationale
+- [ ] **Identify gaps** — Scan the design for:
+  - Ambiguities or missing details
+  - Assumptions that need validation
+  - Integration points or dependencies not yet addressed
+  - Open questions requiring user input
 
-- [ ] **Clarify the idea** through dialogue, adapted to autonomy level:
-  - **Drive**: Ask 2-3 questions in a batch, then move on.
-  - **Guided**: Ask questions one at a time. After 2-3, check in: "Am I going in a useful direction?"
-  - **Collaborate**: Frame each question as a discussion. After each answer, reflect and explore before asking the next.
+### Phase 3: Document
 
-  Focus on: purpose, constraints, success criteria, audience, integration points.
-
-- [ ] **Research technical landscape** — Look for relevant patterns, existing solutions, potential pitfalls. Share findings proportional to mode:
-  - **Drive**: "I found X and Y patterns. Here is what matters for our approach."
-  - **Guided**: "Found X and Y. Z is interesting but I am unsure of fit — what do you think?"
-  - **Collaborate**: Walk through findings together, let the user react to each one.
-
-- [ ] **Scope check** — If the request spans multiple independent subsystems, flag decomposition. Help the user decide what to tackle first. Otherwise proceed.
-
-### Phase 3: Design
-
-- [ ] **Explore directions** — Propose approaches adapted to mode:
-  - **Drive**: Present your recommended approach with alternatives briefly noted. Move to design.
-  - **Guided**: Present 2-3 approaches. Flag which has a clear winner and which needs input. Ask only on the unclear ones.
-  - **Collaborate**: "What directions come to mind for you? Here is what I am seeing..." Build the option set together, then decide.
-
-- [ ] **Present design** — Cover: architecture, components, data flow, error handling, testing.
-  - **Drive**: Full design presented at once.
-  - **Guided**: Present sections. Flag straightforward sections as proceeding. Pause on ambiguous ones.
-  - **Collaborate**: One section at a time. "What do you think of this part?" Wait for reaction.
-
-- [ ] **Synthesis pause** (Guided + Collaborate only) — Before writing the spec, summarize everything decided: "Here is what we have settled on together — [summary]. Anything we missed or want to change?"
-
-  Drive mode: the written spec IS the synthesis.
-
-### Phase 4: Document
-
-- [ ] **Write design doc** — Save to docs/features/<topic>-design.md with:
+- [ ] **Write design doc** — Save to `docs/features/<topic>-design.md` with:
   - Premise
   - Design decisions (with rationale)
   - Architecture approach / Mermaid diagram
   - Component breakdown
   - Data flow
-  - Open questions (if any)
+  - Open questions and gaps
 
 - [ ] **Self-review** — Scan for placeholders, contradictions, ambiguity. Fix inline.
-- [ ] **User review** — Present the spec: "Ideation written to <path>. Please review." Wait for approval or changes.
 
-### Phase 5: Return
+### Phase 4: Return
 
-- [ ] **Hand off** — Confirm the completed design is ready. Return control to the forge orchestrator, which passes the design output to the architect skill for PRD creation.
+- [ ] **Present the output** — Summarize the design and key decisions. List the open questions and gaps found.
+- [ ] **Hand off** — Return control to the forge orchestrator. The forge passes the design doc to the architect skill for PRD creation.
 
 ## Design Principles
 
 - **Autonomy is a slider, not a mode switch.** Even in Drive mode, if the user interjects, adapt. Even in Collaborate mode, move fast on obvious decisions.
-- **One question at a time in collaborative modes.** Do not overwhelm.
+- **Default to Drive.** Produce a complete design before waiting for feedback.
 - **YAGNI ruthlessly.** Remove unnecessary features from all designs.
 - **Be flexible.** Go back and clarify when something does not make sense.
-- **Visual companion:** Use for architecture diagrams, layout sketches, comparison boards. In Collaborate mode, use it extensively. In Drive mode, only for complex diagrams.
 
 ## Relationship to Forge
 
-Ideate replaces the rainstorming skill in the AIPDLC lifecycle. The forge orchestrator invokes this skill during the Discover phase. The output at docs/features/<topic>-design.md is consumed by the architect skill when writing the PRD.
+Ideate runs in the Discover phase. The forge orchestrator invokes this skill and receives the design doc at `docs/features/<topic>-design.md` for the architect to consume when writing the PRD.
 
 Ideate runs in parallel with user-researcher (market analysis). They cover different angles — ideate on technical design, user-researcher on market fit.
