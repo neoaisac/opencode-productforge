@@ -53,53 +53,39 @@ flowchart LR
 
 Do NOT manually invoke project-initialization, ideate, user-researcher, architect, or writing-plans — those are called by this orchestrator as needed.
 
-## Process
+## Reference: Lifecycle Overview
 
-Follow these phases in order. Create a todo for each phase and mark complete as you go.
+This lifecycle is automated by the `/forge` command and `@forge` subagent. The subagent's instructions define each phase — you do not need to follow this document manually.
 
 ### Phase 1: Discover
 
-- [ ] **If no docs structure exists**, invoke `project-initialization` to scaffold it
-- [ ] **Invoke `ideate`** to refine the premise into a clear design. Follow its full process: start → discover → design → document → return. It defaults to Drive mode and produces a design doc at `docs/features/<topic>-design.md`.
-- [ ] **Invoke `user-researcher`** to research the feature area. Provide the approved design direction as context. Wait for the 4-level categorization (disruptive, must-haves, nice-to-haves, no-gos).
+- **ideate** — Refines premise into a design doc at `docs/features/<topic>-design.md`
+- **user-researcher** — Researches market and user sentiment
 
 ### Phase 2: Design
 
-- [ ] **Invoke `architect`** to write ADRs for all technology and architecture decisions made during ideate + research. Ensure Mermaid diagrams are added to the PRD.
-- [ ] **Write the PRD** at `docs/prds/YYYY-MM-DD-feature-name.md` consolidating: scope, architecture diagram, data model, functional requirements, non-functional requirements.
+- **architect** — Writes ADRs for all decisions, produces PRD at `docs/prds/YYYY-MM-DD-feature-name.md`
 
 ### Phase 3: Plan
 
-- [ ] **Invoke `writing-plans`** to produce an implementation plan at `docs/plans/YYYY-MM-DD-feature-name.md` with bite-sized tasks.
+- **writing-plans** — Breaks PRD into implementation tasks at `docs/plans/YYYY-MM-DD-feature-name.md`
 
 ### Phase 4: Decision Gate
 
-- [ ] **Present the full picture to the user:**
-  1. ADRs written (what was decided and why)
-  2. PRD (feature scope)
-  3. Implementation plan (tasks)
-  4. User research findings (market context)
-
-- [ ] **Ask**: "Ready to proceed with implementation? Yes / No / Iterate on X"
-
-  - **Yes** → proceed to Phase 5
-  - **No** → go back to the relevant phase and loop
-  - **Iterate on X** → refine the specific deliverable, then return to gate
+The forge subagent presents ADRs, PRD, and plan, then asks for user approval.
 
 ### Phase 5: Build
 
-- [ ] **Invoke `subagent-driven-development`** to execute the plan. Follow its process exactly.
+- **subagent-driven-development** — Executes each task via fresh subagents with per-task review
 
 ### Phase 6: Learn
 
-- [ ] **Invoke `retrospective`** to identify gaps, update docs, and propose automation improvements.
-
-Then present a summary of what was built, what was learned, and what automation was added.
+- **retrospective** — Identifies gaps, updates docs, proposes automation
 
 ## Key Principles
 
-- **Single entry point**: The user only invokes `forge`. Do not make them orchestrate skills manually.
-- **Follow each skill exactly**: When you invoke ideate, follow its full process. Same for all others.
-- **Gate before build**: Never proceed to implementation without explicit user approval at the gate.
-- **Parallel where possible**: User-researcher can run concurrently with ideate's research phase if they cover different ground.
+- **Single entry point**: The user only invokes `/forge`. The subagent orchestrates all phases.
+- **Gate before build**: Never proceed to implementation without explicit user approval.
+- **Parallel where possible**: Phase 1 runs ideate and user-researcher concurrently.
+- **Subagents load their own skills**: Each phase dispatches a `task` subagent that loads the relevant skill via the `skill` tool.
 - **Failures → retrospective**: If a skill's output is rejected at the gate, note the pattern for the retrospective.

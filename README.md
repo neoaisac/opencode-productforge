@@ -20,11 +20,10 @@ Initialize, govern, and learn from every project with a repeatable lifecycle.
 ```mermaid
 flowchart TB
     CMD["/forge &lt;premise&gt;"] --> AGT["@forge subagent"]
-    AGT --> SKL["forge SKILL.md"]
-
-    SKL --> P[Premise]
-    P --> D[Discover]
-    D --> D2[Design]
+    AGT -->|"phase 1: parallel dispatch"| ID["ideate task"]
+    AGT -->|"phase 1: parallel dispatch"| UR["user-researcher task"]
+    ID --> D2[Design]
+    UR --> D2
     D2 --> P2[Plan]
     P2 --> G[Gate<br>User Approves]
     G --> B[Build]
@@ -32,26 +31,24 @@ flowchart TB
     B --> L[Learn]
     L -->|Next feature| P
 
-    subgraph D[Discover]
-        Init["project-initialization"]
-        ID["ideate"]
-        UR["user-researcher"]
+    subgraph P[Premise]
+        P1["$ARGUMENTS"]
     end
 
     subgraph D2[Design]
-        Arch["architect + PRD"]
+        Arch["architect task"]
     end
 
     subgraph P2[Plan]
-        WP["writing-plans"]
+        WP["writing-plans task"]
     end
 
     subgraph B[Build]
-        Exec["subagent-driven-development"]
+        Exec["subagent-driven-development task"]
     end
 
     subgraph L[Learn]
-        Retro["retrospective"]
+        Retro["retrospective task"]
     end
 ```
 
@@ -96,34 +93,45 @@ That's it. Here's what happens:
   ▼
 forge.md (command) ── passes premise to ──► forge.md (subagent)
                                                │
-                                               ▼
-                                          forge SKILL.md
-                                               │
-                                               ▼
-         ┌──────────────────────────────────────────────────┐
-         │  AIPDLC Lifecycle                                │
-         │                                                  │
-         │  Phase 1: Discover                               │
-         │    ├─ project-initialization (scaffold docs)     │
-         │    ├─ ideate (refine design, choose autonomy)    │
-         │    └─ user-researcher (market + sentiment)       │
-         │  Phase 2: Design   ── architect (ADRs + PRD)     │
-         │  Phase 3: Plan     ── writing-plans (tasks)      │
-         │  Phase 4: Gate     ── you approve or iterate     │
-         │  Phase 5: Build    ── subagents execute          │
-         │  Phase 6: Learn    ── retrospective (automate)   │
-         └──────────────────────────────────────────────────┘
+                            ┌──────────────────┼──────────────────┐
+                            ▼                  ▼                   ▼
+                    ideate task        user-researcher      (Phase 1)
+                    (design doc)       (market research)     parallel
+                            │                  │
+                            └──────┬───────────┘
+                                   ▼
+                            architect task          (Phase 2)
+                            (ADRs + PRD)
+                                   │
+                                   ▼
+                            writing-plans task      (Phase 3)
+                            (implementation plan)
+                                   │
+                                   ▼
+                              [GATE]                (Phase 4)
+                            you approve?
+                            ├─ Yes → Build
+                            ├─ No  → stop
+                            └─ Iterate → refine
+                                   │
+                                   ▼
+                    subagent-driven-development    (Phase 5)
+                    (one subagent per task)
+                                   │
+                                   ▼
+                            retrospective           (Phase 6)
+                            (automate gaps)
 ```
 
 No other skills to remember — `/forge` is the sole entry point.
 
-### 4. Choose your ideation style
+### 4. How it works
 
-When `forge` invokes the `ideate` skill, you'll be asked how you want to collaborate:
+The forge orchestrator runs the full lifecycle autonomously. Each phase dispatches a fresh subagent that loads the relevant skill and executes its process. You only interact at the **Gate** (Phase 4), where you approve the design, request iterations, or stop.
 
-- **Drive** — full autonomy, agent designs end-to-end, you see the final spec
-- **Guided** (default) — agent moves fast on clear decisions, asks on conflict/ambiguity
-- **Collaborate** — full partnership, discuss everything together, co-create with visual companion
+- **Phase 1-3** — fully autonomous research, design, and planning
+- **Phase 4 (Gate)** — you review ADRs, PRD, and plan; decide next steps
+- **Phase 5-6** — autonomous build and retrospective
 
 ## License
 
