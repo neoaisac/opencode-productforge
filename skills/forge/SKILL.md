@@ -65,18 +65,21 @@ This lifecycle is automated by the `/forge` command and `@forge` subagent. The s
 ### Phase 2: Design
 
 - **architect** — Writes ADRs for all decisions, produces PRD at `docs/prds/YYYY-MM-DD-feature-name.md`
+- **qa-expert** — Reviews PRD, defines acceptance criteria at `docs/features/<topic>-acceptance.md`
 
 ### Phase 3: Plan
 
 - **writing-plans** — Breaks PRD into implementation tasks at `docs/plans/YYYY-MM-DD-feature-name.md`
+- **qa-expert** — Reviews plan, produces test strategy at `docs/features/<topic>-test-strategy.md`
 
 ### Phase 4: Decision Gate
 
-The forge subagent presents ADRs, PRD, and plan, then asks for user approval.
+The forge subagent presents ADRs, PRD, plan, acceptance criteria, and test strategy, then asks for user approval.
 
 ### Phase 5: Build
 
 - **subagent-driven-development** — Executes each task via fresh subagents with per-task review
+- **qa-expert** — Validates test changes per task, verifies acceptance criteria met
 
 ### Phase 6: Learn
 
@@ -86,6 +89,6 @@ The forge subagent presents ADRs, PRD, and plan, then asks for user approval.
 
 - **Single entry point**: The user only invokes `/forge`. The subagent orchestrates all phases.
 - **Gate before build**: Never proceed to implementation without explicit user approval.
-- **Parallel where possible**: Phase 1 runs ideate and user-researcher concurrently.
+- **Parallel where possible**: Phase 1 runs ideate and user-researcher concurrently. Phase 2 runs architect and qa-expert concurrently.
 - **Subagents load their own skills**: Each phase dispatches a `task` subagent that loads the relevant skill via the `skill` tool.
 - **Failures → retrospective**: If a skill's output is rejected at the gate, note the pattern for the retrospective.

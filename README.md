@@ -13,13 +13,14 @@ Initialize, govern, and learn from every project with a repeatable lifecycle.
 | **ideate** | Refine rough ideas into clear designs with 3 autonomy levels: Drive (full auto), Guided (ask on conflict), Collaborate (co-create) |
 | **user-researcher** | Research industry-leading systems and user sentiment for any feature, categorized by priority |
 | **architect** | Record every architectural decision, enforce continuity, verify deployability |
+| **qa-expert** | Define acceptance criteria, test strategy, and validate implementation quality at each phase |
 | **retrospective** | Learn from vibe-coding loops, keep docs current, propose automation |
 
 ## Workflow
 
 ```mermaid
 flowchart TB
-    CMD["/forge &lt;premise&gt;"] --> AGT["@forge subagent"]
+    CMD["/forge <premise>"] --> AGT["@forge subagent"]
     AGT -->|"phase 1: parallel dispatch"| ID["ideate task"]
     AGT -->|"phase 1: parallel dispatch"| UR["user-researcher task"]
     ID --> D2[Design]
@@ -37,14 +38,17 @@ flowchart TB
 
     subgraph D2[Design]
         Arch["architect task"]
+        QA2["qa-expert (acceptance)"]
     end
 
     subgraph P2[Plan]
         WP["writing-plans task"]
+        QA3["qa-expert (test strategy)"]
     end
 
     subgraph B[Build]
         Exec["subagent-driven-development task"]
+        QA5["qa-expert (validation)"]
     end
 
     subgraph L[Learn]
@@ -100,27 +104,35 @@ forge.md (command) ── passes premise to ──► forge.md (subagent)
                             │                  │
                             └──────┬───────────┘
                                    ▼
-                            architect task          (Phase 2)
-                            (ADRs + PRD)
-                                   │
-                                   ▼
-                            writing-plans task      (Phase 3)
-                            (implementation plan)
-                                   │
-                                   ▼
-                              [GATE]                (Phase 4)
-                            you approve?
-                            ├─ Yes → Build
-                            ├─ No  → stop
-                            └─ Iterate → refine
-                                   │
-                                   ▼
-                    subagent-driven-development    (Phase 5)
-                    (one subagent per task)
-                                   │
-                                   ▼
-                            retrospective           (Phase 6)
-                            (automate gaps)
+            ┌──────────────────────┼──────────────────────┐
+            ▼                      ▼                      ▼
+     architect task          qa-expert task          (Phase 2)
+     (ADRs + PRD)            (acceptance criteria)    parallel
+            │                      │
+            └──────────┬───────────┘
+                       ▼
+            ┌──────────────────────┼──────────────────────┐
+            ▼                      ▼                      ▼
+     writing-plans task      qa-expert task          (Phase 3)
+     (impl plan)             (test strategy)         sequential
+            │                      │
+            └──────────┬───────────┘
+                       ▼
+                      [GATE]                 (Phase 4)
+                     you approve?
+                     ├─ Yes → Build
+                     ├─ No  → stop
+                     └─ Iterate → refine
+                       │
+            ┌──────────┼───────────┐
+            ▼          ▼           ▼
+ subagent-driven-dev  qa-expert   (Phase 5)
+ (one subagent/task)  (validation) parallel
+            │          │
+            └──────────┘
+                       ▼
+                retrospective          (Phase 6)
+                (automate gaps)
 ```
 
 No other skills to remember — `/forge` is the sole entry point.
@@ -130,7 +142,7 @@ No other skills to remember — `/forge` is the sole entry point.
 The forge orchestrator runs the full lifecycle autonomously. Each phase dispatches a fresh subagent that loads the relevant skill and executes its process. You only interact at the **Gate** (Phase 4), where you approve the design, request iterations, or stop.
 
 - **Phase 1-3** — fully autonomous research, design, and planning
-- **Phase 4 (Gate)** — you review ADRs, PRD, and plan; decide next steps
+- **Phase 4 (Gate)** — you review ADRs, PRD, plan, acceptance criteria, and test strategy; decide next steps
 - **Phase 5-6** — autonomous build and retrospective
 
 ## License

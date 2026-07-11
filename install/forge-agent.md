@@ -39,21 +39,29 @@ Provide this prompt: "Load the 'user-researcher' skill via the `skill` tool, the
 
 Wait for BOTH to complete. Mark Phase 1 complete.
 
-## Phase 2: Design (architect)
+## Phase 2: Design (architect + qa-expert)
 
-Mark Phase 2 `in_progress`. Dispatch one task subagent:
+Mark Phase 2 `in_progress`. Dispatch TWO task subagents IN PARALLEL:
 
+**Subagent A — architect:**
 "Load the 'architect' skill via the `skill` tool, then follow its process. Inputs: premise = [premise], design doc from Phase 1 at `docs/features/<topic>-design.md`. Produce ADRs in `docs/adrs/` and a PRD at `docs/prds/YYYY-MM-DD-feature.md`. Do NOT start by saying 'waiting' — begin immediately."
 
-Mark Phase 2 complete.
+**Subagent B — qa-expert (acceptance review):**
+"Load the 'qa-expert' skill via the `skill` tool, then follow its Phase 2 process. Input: PRD draft from architect subagent (will be at `docs/prds/YYYY-MM-DD-feature.md`). Produce acceptance criteria at `docs/features/<topic>-acceptance.md`. Do NOT start by saying 'waiting' — begin immediately. Note: wait for architect to produce PRD first, then review."
 
-## Phase 3: Plan (writing-plans)
+Wait for BOTH to complete. Mark Phase 2 complete.
 
-Mark Phase 3 `in_progress`. Dispatch one task subagent:
+## Phase 3: Plan (writing-plans + qa-expert)
 
+Mark Phase 3 `in_progress`. Dispatch TWO task subagents IN SEQUENCE:
+
+**Subagent A — writing-plans:**
 "Load the 'writing-plans' skill via the `skill` tool, then follow its process. Input: PRD at `docs/prds/YYYY-MM-DD-feature.md`. Produce plan at `docs/plans/YYYY-MM-DD-feature.md`. Do NOT start by saying 'waiting' — begin immediately."
 
-Mark Phase 3 complete.
+**Subagent B — qa-expert (test strategy review):**
+"Load the 'qa-expert' skill via the `skill` tool, then follow its Phase 3 process. Input: plan from writing-plans subagent (at `docs/plans/YYYY-MM-DD-feature.md`), acceptance criteria from Phase 2 (at `docs/features/<topic>-acceptance.md`). Produce test strategy at `docs/features/<topic>-test-strategy.md` or append to plan. Do NOT start by saying 'waiting' — begin immediately."
+
+Wait for BOTH to complete. Mark Phase 3 complete.
 
 ## Phase 4: Gate
 
@@ -73,13 +81,17 @@ Act on the answer:
 - **No** → present summary, stop
 - **Iterate** → refine, return to gate
 
-## Phase 5: Build
+## Phase 5: Build (subagent-driven-development + qa-expert)
 
-Mark Phase 5 `in_progress`. Dispatch one task subagent:
+Mark Phase 5 `in_progress`. Dispatch TWO task subagents:
 
+**Subagent A — subagent-driven-development:**
 "Load the 'subagent-driven-development' skill via the `skill` tool, then follow its process. Input: plan at `docs/plans/YYYY-MM-DD-feature.md`. Do NOT start by saying 'waiting' — begin immediately."
 
-Mark Phase 5 complete.
+**Subagent B — qa-expert (build validation):**
+"Load the 'qa-expert' skill via the `skill` tool, then follow its Phase 5 process. Inputs: plan at `docs/plans/YYYY-MM-DD-feature.md`, acceptance criteria at `docs/features/<topic>-acceptance.md`, test strategy at `docs/features/<topic>-test-strategy.md`. Review test changes for each task, verify acceptance criteria are met. Report gaps. Do NOT start by saying 'waiting' — begin immediately."
+
+Wait for BOTH to complete. Mark Phase 5 complete.
 
 ## Phase 6: Learn
 
